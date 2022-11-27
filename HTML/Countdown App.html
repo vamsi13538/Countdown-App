@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountDown | Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <style>
+        *{
+    box-sizing: border-box;
+}
+body{
+    background-image: url('https://preview.ibb.co/c7Drsn/showcase.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.create0{
+    background-color: black;
+    height: 100vh;
+    overflow: hidden;
+    opacity: 0.7;
+}
+.image1{
+    width: 400px;
+    height: 200px;
+    margin-top: 40px;
+}
+h3{
+    margin-top: 10px;
+    font-size: 2.2rem;
+}
+#output{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+}
+.time{
+    font-size: 50px;
+    padding: 10px;
+    border: 2px solid white;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: black;
+    opacity: 0.9;
+    width: 160px;
+}
+.time:first-child{
+    background-color: lightseagreen;
+}
+.time span{
+    display: block;
+    font-size: 20px;
+}
+    </style>
+</head>
+<body>
+    <div class="create0">
+        <div class="container text-center">
+            <img src="https://image.ibb.co/f4vhyS/logo.png" alt="No_Img" class="image1" id="profile">
+            <p class="text-white mt-3 lead" id="wish">Expect the Unexpected ?</p>
+            <h3 class="text-white" id="coming-soon">Coming Soon !</h3>
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const output = document.querySelector('#output');
+
+const launchDate = new Date('Nov 27, 2022 10:30:00').getTime();
+
+const intvl = setInterval(() => {
+    const present =  new Date().getTime();
+    let distance = launchDate - present;
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor(distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+    let minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
+    let secs = Math.floor(distance % (1000 * 60) / 1000);
+
+    output.innerHTML = `<div class="time">${days}<span>Days</span></div>
+    <div class="time">${hours}<span>Hours</span></div>
+    <div class="time">${minutes}<span>Minutes</span></div>
+    <div class="time">${secs}<span>Seconds</span></div>`;
+
+    if(distance < 0){
+        clearInterval(intvl);
+
+        const comingSoon = document.getElementById('coming-soon');
+        comingSoon.innerHTML = '<h3>Happy New Year <b class="text-primary">______</b><h3>'
+
+        const wish = document.querySelector('#wish');
+        wish.innerHTML = '<p>A Wish From Friend <i class="text-warning">______</i></p>'
+
+        const zero = 0;
+        output.innerHTML = `<div class="time bg-success">${2}<span>Two</span></div>
+        <div class="time bg-light text-black">${zero}<span>Zero</span></div>
+        <div class="time bg-success">${2}<span>Two</span></div>
+        <div class="time bg-light text-black">${3}<span>Three</span></div>`;
+
+        // https://i.postimg.cc/sXsKrg8K/cover-image.jpg
+
+        const profile = document.querySelector('img[id="profile"]').src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeHcVL-lCEOaJSTelm9yixIVDd65h--asDoR9SJDaodo7qU9aGWgfKhlzww_jucCctb-8&usqp=CAU';
+        const profiles = document.querySelector('img[id="profile"]')
+        profiles.style.borderRadius = '80%';
+        profiles.style.width = '200px';
+        profiles.style.height ='200px';
+        profiles.style.opacity = 0.8;
+
+        const bodyBack = document.querySelector('body');
+        // https://images.pexels.com/photos/399610/pexels-photo-399610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+        bodyBack.style.background = "url('https://media1.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif')";
+
+        const create0 = document.querySelector('.create0');
+        create0.style.opacity = 0.6;
+
+        window.sr = ScrollReveal();
+
+        sr.reveal('#output', {
+            duration: 2000,
+            origin: 'bottom',
+            distance: '300px',
+        });
+
+        sr.reveal('#wish, #coming-soon', {
+            duration: 2000,
+            origin: 'top',
+            distance: '300px',
+            delay: 1000
+        });
+
+        sr.reveal('#profile', {
+            duration: 5000,
+            origin: 'top',
+            distance: '200px',
+            delay: 2000
+        });
+        
+        
+
+    }
+
+},1000);
+    </script>
+</body>
+</html>
